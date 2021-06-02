@@ -5,39 +5,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.annotation.Generated;
+
 /**
  * @Author Koichi Sugi
- *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "USER_ID",
+        "TICKET",
+        "GROUP",
         "COMMISSION",
         "SWAPS",
-        "PROFIT",
-        "COMMENT"
+        "PROFIT"
 })
 @Generated("jsonschema2pojo")
-public class Row {
-    @JsonProperty("USER_ID")
-    private int userId;
+public class GroupTrade {
+    @JsonProperty("TICKET")
+    private int ticket;
+    @JsonProperty("GROUP")
+    private int group;
     @JsonProperty("COMMISSION")
     private float commission;
     @JsonProperty("SWAPS")
     private float swaps;
     @JsonProperty("PROFIT")
     private float profit;
-    @JsonProperty("COMMENT")
-    private String comment;
 
-    @JsonProperty("USER_ID")
-    public int getUserId() {
-        return userId;
+    @JsonProperty("TICKET")
+    public int getTicket() {
+        return ticket;
     }
 
-    @JsonProperty("USER_ID")
-    public void setUserId(int userId) {
-        this.userId = userId;
+    @JsonProperty("TICKET")
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
+    }
+
+    @JsonProperty("GROUP")
+    public int getGroup() {
+        return group;
+    }
+
+    @JsonProperty("GROUP")
+    public void setGroup(int group) {
+        this.group = group;
     }
 
     @JsonProperty("COMMISSION")
@@ -46,7 +56,7 @@ public class Row {
     }
 
     @JsonProperty("COMMISSION")
-    public void setCommission(float commission) {
+    public void setCommission(int commission) {
         this.commission = commission;
     }
 
@@ -56,7 +66,7 @@ public class Row {
     }
 
     @JsonProperty("SWAPS")
-    public void setSwaps(float swaps) {
+    public void setSwaps(int swaps) {
         this.swaps = swaps;
     }
 
@@ -66,27 +76,21 @@ public class Row {
     }
 
     @JsonProperty("PROFIT")
-    public void setProfit(float profit) {
+    public void setProfit(int profit) {
         this.profit = profit;
-    }
-
-    @JsonProperty("COMMENT")
-    public String getComment() {
-        return comment;
-    }
-
-    @JsonProperty("COMMENT")
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Row.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("userId");
+        sb.append("ticket");
         sb.append('=');
-        sb.append(this.userId);
+        sb.append(this.ticket);
+        sb.append(',');
+        sb.append("group");
+        sb.append('=');
+        sb.append(this.group);
         sb.append(',');
         sb.append("commission");
         sb.append('=');
@@ -100,10 +104,6 @@ public class Row {
         sb.append('=');
         sb.append(this.profit);
         sb.append(',');
-        sb.append("comment");
-        sb.append('=');
-        sb.append(((this.comment == null) ? "<null>" : this.comment));
-        sb.append(',');
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');
         } else {
@@ -113,4 +113,3 @@ public class Row {
     }
 
 }
-
