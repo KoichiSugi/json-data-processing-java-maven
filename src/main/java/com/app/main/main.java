@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,23 +19,23 @@ import java.util.List;
  * @Author Koichi Sugi
  */
 class Main {
-
-    public static final String ClientsRecordsPath = "C:\\Users\\61432\\Desktop\\second_assessment\\JsonDataProcessing\\src\\main\\resources\\ClientsRecords.json";
-    public static final String GroupTradePath = "C:\\Users\\61432\\Desktop\\second_assessment\\JsonDataProcessing\\src\\main\\resources\\GroupTrade.json";
+    public static final File ClientsRecords = new File("src/main/resources/ClientsRecords.json");
+    public static final File GroupTrade = new File("src/main/resources/GroupTrade.json");
 
     public static void main(String[] args) {
-        System.out.println("main here");
+        String ClientsRecordPath = ClientsRecords.getAbsolutePath();
+        String GroupTradePath = GroupTrade.getAbsolutePath();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
         try {
-            List<Row> rows = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(ClientsRecordsPath)).get("rows"), Row[].class));
+            List<Row> rows = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(ClientsRecordPath)).get("rows"), Row[].class));
 
             ServiceImpl idp = new ServiceImpl();
             //idp.individualDataProcessing(rows);
 
-            List<GroupTrade> groupTrades = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(GroupTradePath)).get("groupTrades"), GroupTrade[].class));
+            List<GroupTrade> groupTrades = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(GroupTradePath)).get("rows"), GroupTrade[].class));
             idp.groupDataProcessing(groupTrades);
 
         } catch (JsonGenerationException e) {

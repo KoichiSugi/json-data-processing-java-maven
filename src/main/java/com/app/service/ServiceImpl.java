@@ -49,6 +49,7 @@ public class ServiceImpl implements Service {
 
     @Override
     public void groupDataProcessing(List<GroupTrade> groupTrades) {
+        System.out.println("Group data process");
         System.out.println(groupTrades);
     }
 }
