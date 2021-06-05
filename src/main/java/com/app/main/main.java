@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,18 +26,23 @@ class Main {
     public static void main(String[] args) {
         String ClientsRecordPath = ClientsRecords.getAbsolutePath();
         String GroupTradePath = GroupTrade.getAbsolutePath();
-
+        HashMap<Integer, Float> individualPnL = new HashMap<>();
+        HashMap<Integer, Float> groupPnL = new HashMap<>();
+        HashMap<Integer, Float> groupTotalPnL = new HashMap<>();
+        
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
         try {
             List<Row> rows = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(ClientsRecordPath)).get("rows"), Row[].class));
-
-            ServiceImpl idp = new ServiceImpl();
-            //idp.individualDataProcessing(rows);
-
             List<GroupTrade> groupTrades = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(GroupTradePath)).get("rows"), GroupTrade[].class));
-            idp.groupDataProcessing(groupTrades);
+            ServiceImpl idp = new ServiceImpl();
+
+            individualPnL = idp.getIndividualPnL(rows);
+            groupPnL = idp.getGroupPnL(groupTrades);
+            groupTotalPnL = idp.getGroupTotalPnL(groupTrades, rows);
+            //Serialize JSON
+
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
