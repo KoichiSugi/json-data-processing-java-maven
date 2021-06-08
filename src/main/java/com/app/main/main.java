@@ -29,7 +29,7 @@ class Main {
         HashMap<Integer, Float> individualPnL = new HashMap<>();
         HashMap<Integer, Float> groupPnL = new HashMap<>();
         HashMap<Integer, Float> groupTotalPnL = new HashMap<>();
-        
+
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
@@ -42,7 +42,7 @@ class Main {
             groupPnL = idp.getGroupPnL(groupTrades);
             groupTotalPnL = idp.getGroupTotalPnL(groupTrades, rows);
             //Serialize JSON
-
+            idp.serialzeJson(individualPnL, groupPnL, groupTotalPnL, groupTrades, rows);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();

@@ -21,9 +21,9 @@ public class Group {
     @JsonProperty("group")
     private String group;
     @JsonProperty("clientTotalPnL")
-    private float clientTotalPnL;
+    private String clientTotalPnL;
     @JsonProperty("groupPnL")
-    private float groupPnL;
+    private String groupPnL;
     @JsonProperty("clientData")
     private List<TradeDatum> clientData = null;
 
@@ -38,22 +38,22 @@ public class Group {
     }
 
     @JsonProperty("clientTotalPnL")
-    public float getClientTotalPnL() {
+    public String getClientTotalPnL() {
         return clientTotalPnL;
     }
 
     @JsonProperty("clientTotalPnL")
-    public void setClientTotalPnL(float clientTotalPnL) {
+    public void setClientTotalPnL(String clientTotalPnL) {
         this.clientTotalPnL = clientTotalPnL;
     }
 
     @JsonProperty("groupPnL")
-    public float getGroupPnL() {
+    public String getGroupPnL() {
         return groupPnL;
     }
 
     @JsonProperty("groupPnL")
-    public void setGroupPnL(float groupPnL) {
+    public void setGroupPnL(String groupPnL) {
         this.groupPnL = groupPnL;
     }
 
