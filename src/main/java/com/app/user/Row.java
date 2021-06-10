@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.annotation.Generated;
 /**
  * @Author Koichi Sugi
- *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -74,6 +73,7 @@ public class Row {
     public String getComment() {
         return comment;
     }
+
 
     @JsonProperty("COMMENT")
     public void setComment(String comment) {

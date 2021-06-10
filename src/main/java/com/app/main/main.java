@@ -10,8 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -26,9 +24,8 @@ class Main {
     public static void main(String[] args) {
         String ClientsRecordPath = ClientsRecords.getAbsolutePath();
         String GroupTradePath = GroupTrade.getAbsolutePath();
-        HashMap<Integer, Float> individualPnL = new HashMap<>();
         HashMap<Integer, Float> groupPnL = new HashMap<>();
-        HashMap<Integer, Float> groupTotalPnL = new HashMap<>();
+        HashMap<Integer, Float> clientTotalPnl = new HashMap<>();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
@@ -38,11 +35,11 @@ class Main {
             List<GroupTrade> groupTrades = Arrays.asList(mapper.treeToValue(mapper.readTree(new File(GroupTradePath)).get("rows"), GroupTrade[].class));
             ServiceImpl idp = new ServiceImpl();
 
-            individualPnL = idp.getIndividualPnL(rows);
+            idp.getIndividualPnL(rows);
             groupPnL = idp.getGroupPnL(groupTrades);
-            groupTotalPnL = idp.getGroupTotalPnL(groupTrades, rows);
+            clientTotalPnl = idp.getClientTotalPnL(groupTrades, rows);
             //Serialize JSON
-            idp.serialzeJson(individualPnL, groupPnL, groupTotalPnL, groupTrades, rows);
+            idp.serializeJson(groupPnL, clientTotalPnl, groupTrades, rows);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
