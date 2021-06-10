@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.annotation.Generated;
+import java.util.List;
+
 /**
  * @Author Koichi Sugi
- *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -74,6 +75,7 @@ public class Row {
     public String getComment() {
         return comment;
     }
+
 
     @JsonProperty("COMMENT")
     public void setComment(String comment) {
