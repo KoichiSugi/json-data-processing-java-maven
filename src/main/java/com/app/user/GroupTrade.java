@@ -107,7 +107,7 @@ public class GroupTrade {
         sb.append(',');
         sb.append("closeTime");
         sb.append('=');
-        sb.append(((this.closeTime == null)?"<null>":this.closeTime));
+        sb.append(((this.closeTime == null) ? "<null>" : this.closeTime));
         sb.append(',');
         sb.append("commission");
         sb.append('=');
@@ -121,8 +121,8 @@ public class GroupTrade {
         sb.append('=');
         sb.append(this.profit);
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

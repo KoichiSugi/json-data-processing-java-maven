@@ -26,7 +26,7 @@ public class Group {
     @JsonProperty("groupPnL")
     private String groupPnL;
     @JsonProperty("clientData")
-    private List<TradeDatum> clientData = null;
+    private List<ClientData> clientData = null;
 
     @JsonProperty("group")
     public String getGroup() {
@@ -59,12 +59,12 @@ public class Group {
     }
 
     @JsonProperty("clientData")
-    public List<TradeDatum> getClientData() {
+    public List<ClientData> getClientData() {
         return clientData;
     }
 
     @JsonProperty("clientData")
-    public void setClientData(List<TradeDatum> clientData) {
+    public void setClientData(List<ClientData> clientData) {
         this.clientData = clientData;
     }
 

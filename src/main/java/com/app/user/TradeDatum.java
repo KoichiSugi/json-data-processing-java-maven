@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "SWAPS",
         "PROFIT",
         "COMMENT",
+        "masterLogin",
         "totalPnL"
 })
 @Generated("jsonschema2pojo")
@@ -36,6 +37,8 @@ public class TradeDatum {
     private String profit;
     @JsonProperty("COMMENT")
     private String comment;
+    @JsonProperty("masterLogin")
+    private String masterLogin;
     @JsonProperty("totalPnL")
     private float totalPnL;
 
@@ -54,18 +57,18 @@ public class TradeDatum {
         return userId;
     }
 
-    @JsonProperty("CLOSE_TIME")
+    @JsonProperty("USER_ID")
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
     @JsonProperty("CLOSE_TIME")
-    public String getcloseTime() {
+    public String getCloseTime() {
         return closeTime;
     }
 
     @JsonProperty("CLOSE_TIME")
-    public void setcloseTime(String closeTime) {
+    public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
 
@@ -107,6 +110,14 @@ public class TradeDatum {
     @JsonProperty("COMMENT")
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getMasterLogin() {
+        return masterLogin;
+    }
+
+    public void setMasterLogin(String masterLogin) {
+        this.masterLogin = masterLogin;
     }
 
     @JsonProperty("totalPnL")

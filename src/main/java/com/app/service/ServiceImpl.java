@@ -123,15 +123,23 @@ public class ServiceImpl implements Service {
                 }
             }
         }
+        //set clientData
+        //1. mid section of comment in rows (groupId of groupTrade)mathces
+        for(int i=0; i< rows.size(); i++){
+
+        }
+
         //set tradeDatum data by checking a group number of ticket number of groupTrades data
         //add corresponding data to TradeDatum attributes if the group ID of group and groupTrade
-        List<TradeDatum> clientData = new ArrayList<>();
+        List<TradeDatum> tradeDatumList = new ArrayList<>();
         for (int j = 0; j < group.length; j++) {
             for (int k = 0; k < groupTrades.size(); k++) {
                 if (Integer.parseInt(group[j].getGroup()) == groupTrades.get(k).getGroup()) {
                     //set ticket and other data
                     TradeDatum tradeDatum = new TradeDatum();
                     tradeDatum.setTicket(String.valueOf(groupTrades.get(k).getTicket()));
+                    //24/6/2021
+                    tradeDatum.setCloseTime(String.valueOf(groupTrades.get(k).getCloseTime()));
                     tradeDatum.setCommission(String.valueOf(groupTrades.get(k).getCommission()));
                     tradeDatum.setSwaps(String.valueOf(groupTrades.get(k).getSwaps()));
                     tradeDatum.setProfit(String.valueOf(groupTrades.get(k).getProfit()));
@@ -139,14 +147,19 @@ public class ServiceImpl implements Service {
                     tradeDatum.setTotalPnL(totalPnl);
                     for (int z = 0; z < rows.size(); z++) {
                         String ticketNumOfGroup = rows.get(z).getComment();
+                        String groupId = rows.get(z).getComment();
+                        groupId = groupId.substring(groupId.indexOf("|") + 1);
+                        groupId = groupId.substring(0, groupId.indexOf("|"));
                         ticketNumOfGroup = ticketNumOfGroup.substring(ticketNumOfGroup.lastIndexOf("|") + 1);
                         if (Integer.parseInt(ticketNumOfGroup) == groupTrades.get(k).getTicket()) {
                             tradeDatum.setComment(rows.get(z).getComment());
+                            tradeDatum.setMasterLogin(groupId);
                         }
+
                     }
-                    clientData.add(tradeDatum);
+                    tradeDatumList.add(tradeDatum);
                     //System.out.println(tradeDatum);
-                    group[j].setClientData(clientData);
+                    //group[j].setClientData(tradeDatumList);
                 }
             }
         }
@@ -171,6 +184,7 @@ public class ServiceImpl implements Service {
     public List<GroupTrade> getObjectFromGroupTrade(List<GroupTrade> groupTrades, String searchterm) {
         return groupTrades.stream().filter(p -> p.getGroup() == (Integer.parseInt(searchterm))).collect(Collectors.toList());
     }
+
     //Stream implementation (implement later)
     public List<Row> getObjectFromRows(List<Row> rows, int searchterm) {
         return rows.stream().filter(p -> p.getComment().contains(String.valueOf(searchterm))).collect(Collectors.toList());
