@@ -5,12 +5,15 @@ import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * @Author Koichi Sugi
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "TICKET",
+        "USER_ID",
+        "CLOSE_TIME",
         "COMMISSION",
         "SWAPS",
         "PROFIT",
@@ -21,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class TradeDatum {
     @JsonProperty("TICKET")
     private String ticket;
+    @JsonProperty("USER_ID")
+    private int userId;
+    @JsonProperty("CLOSE_TIME")
+    private String closeTime;
     @JsonProperty("COMMISSION")
     private String commission;
     @JsonProperty("SWAPS")
@@ -40,6 +47,26 @@ public class TradeDatum {
     @JsonProperty("TICKET")
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    @JsonProperty("USER_ID")
+    public int getUserId() {
+        return userId;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public String getcloseTime() {
+        return closeTime;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public void setcloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 
     @JsonProperty("COMMISSION")
