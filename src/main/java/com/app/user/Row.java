@@ -5,12 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.annotation.Generated;
+
 /**
  * @Author Koichi Sugi
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+        "TICKET",
         "USER_ID",
+        "CLOSE_TIME",
         "COMMISSION",
         "SWAPS",
         "PROFIT",
@@ -18,8 +21,12 @@ import javax.annotation.Generated;
 })
 @Generated("jsonschema2pojo")
 public class Row {
+    @JsonProperty("TICKET")
+    private int ticket;
     @JsonProperty("USER_ID")
     private int userId;
+    @JsonProperty("CLOSE_TIME")
+    private String closeTime;
     @JsonProperty("COMMISSION")
     private float commission;
     @JsonProperty("SWAPS")
@@ -29,6 +36,16 @@ public class Row {
     @JsonProperty("COMMENT")
     private String comment;
 
+    @JsonProperty("TICKET")
+    public int getTicket() {
+        return ticket;
+    }
+
+    @JsonProperty("TICKET")
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
+    }
+
     @JsonProperty("USER_ID")
     public int getUserId() {
         return userId;
@@ -37,6 +54,16 @@ public class Row {
     @JsonProperty("USER_ID")
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public String getcloseTime() {
+        return closeTime;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public void setcloseTime(String closeTime) {
+        this.closeTime = closeTime;
     }
 
     @JsonProperty("COMMISSION")
@@ -84,9 +111,17 @@ public class Row {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Row.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("ticket");
+        sb.append('=');
+        sb.append(this.ticket);
+        sb.append(',');
         sb.append("userId");
         sb.append('=');
         sb.append(this.userId);
+        sb.append(',');
+        sb.append("close_time");
+        sb.append('=');
+        sb.append(this.closeTime);
         sb.append(',');
         sb.append("commission");
         sb.append('=');

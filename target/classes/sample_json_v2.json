@@ -1,0 +1,557 @@
+[
+  {
+    "group": "5001343",
+    "clientTotalPnL": -711.4299999999998, //Total PnL summed by clientdata[].PnL
+    "groupPnL": -712.6600000000001, // Total PnL summed by all trade data
+    "clientData": [ //Store client login, PnL & trade data
+      {
+        "USER_ID": "11000121",
+        "PnL": -422.73,
+        "tradeData": [ // Store All trading data belongs to the client
+          {
+            "TICKET": "8636630",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-26 22:00:04",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.1",
+            "PROFIT": "-44.36",
+            "COMMENT": "MAM|5001343|9228574",
+            "masterLogin": "5001343",
+            "totalPnL": -45.56
+          },
+          {
+            "TICKET": "8648695",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-27 00:04:02",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.09",
+            "PROFIT": "-41.63",
+            "COMMENT": "MAM|5001343|8656959",
+            "masterLogin": "5001343",
+            "totalPnL": -42.82000000000001
+          },
+          {
+            "TICKET": "8664984",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-27 00:04:04",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.05",
+            "PROFIT": "-39.95",
+            "COMMENT": "MAM|5001343|9261605",
+            "masterLogin": "5001343",
+            "totalPnL": -41.1
+          },
+          {
+            "TICKET": "8677023",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:07",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-12.78",
+            "PROFIT": "-11.97",
+            "COMMENT": "MAM|5001343|9233873",
+            "masterLogin": "5001343",
+            "totalPnL": -24.85
+          },
+          {
+            "TICKET": "8773075",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-27 00:30:03",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-2.06",
+            "PROFIT": "-36.99",
+            "COMMENT": "MAM|5001343|9170593",
+            "masterLogin": "5001343",
+            "totalPnL": -39.150000000000006
+          },
+          {
+            "TICKET": "8802448",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-28 22:00:00",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.84",
+            "PROFIT": "-32.24",
+            "COMMENT": "MAM|5001343|9262206",
+            "masterLogin": "5001343",
+            "totalPnL": -33.18000000000001
+          },
+          {
+            "TICKET": "8803555",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-27 00:30:04",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.83",
+            "PROFIT": "-32.31",
+            "COMMENT": "MAM|5001343|9261662",
+            "masterLogin": "5001343",
+            "totalPnL": -33.24
+          },
+          {
+            "TICKET": "9102043",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:08",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.71",
+            "PROFIT": "-5.56",
+            "COMMENT": "MAM|5001343|9170523",
+            "masterLogin": "5001343",
+            "totalPnL": -6.369999999999999
+          },
+          {
+            "TICKET": "9108778",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:08",
+            "COMMISSION": "-0.1",
+            "SWAPS": "0.41",
+            "PROFIT": "-1.42",
+            "COMMENT": "MAM|5001343|9170538",
+            "masterLogin": "5001343",
+            "totalPnL": -1.11
+          },
+          {
+            "TICKET": "9143388",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-06 16:25:15",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-2.3",
+            "PROFIT": "3.88",
+            "COMMENT": "MAM|5001343|9170563",
+            "masterLogin": "5001343",
+            "totalPnL": 1.48
+          },
+          {
+            "TICKET": "9169736",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-14 11:42:25",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.63",
+            "PROFIT": "3.35",
+            "COMMENT": "MAM|5001343|9170568",
+            "masterLogin": "5001343",
+            "totalPnL": 2.62
+          },
+          {
+            "TICKET": "9174750",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-05 19:43:59",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.26",
+            "PROFIT": "3.8",
+            "COMMENT": "MAM|5001343|9174747",
+            "masterLogin": "5001343",
+            "totalPnL": 2.44
+          },
+          {
+            "TICKET": "9178708",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-13 03:43:29",
+            "COMMISSION": "-0.2",
+            "SWAPS": "-0.3",
+            "PROFIT": "0.69",
+            "COMMENT": "MAM|5001343|9178266",
+            "masterLogin": "5001343",
+            "totalPnL": 0.18999999999999995
+          },
+          {
+            "TICKET": "9182399",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-26 22:00:00",
+            "COMMISSION": "-0.2",
+            "SWAPS": "-1.69",
+            "PROFIT": "-61.29",
+            "COMMENT": "MAM|5001343|9228603",
+            "masterLogin": "5001343",
+            "totalPnL": -63.18
+          },
+          {
+            "TICKET": "9191355",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:06",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.16",
+            "PROFIT": "-18.25",
+            "COMMENT": "MAM|5001343|9233880",
+            "masterLogin": "5001343",
+            "totalPnL": -18.51
+          },
+          {
+            "TICKET": "9192601",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-28 22:00:02",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.76",
+            "PROFIT": "-26.17",
+            "COMMENT": "MAM|5001343|9229186",
+            "masterLogin": "5001343",
+            "totalPnL": -27.030000000000005
+          },
+          {
+            "TICKET": "9196214",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-28 22:00:01",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.69",
+            "PROFIT": "-29.34",
+            "COMMENT": "MAM|5001343|9228627",
+            "masterLogin": "5001343",
+            "totalPnL": -30.130000000000003
+          },
+          {
+            "TICKET": "9196589",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-06 13:58:52",
+            "COMMISSION": "-0.2",
+            "SWAPS": "-0.18",
+            "PROFIT": "-0.46",
+            "COMMENT": "MAM|5001343|9196585",
+            "masterLogin": "5001343",
+            "totalPnL": -0.8400000000000001
+          },
+          {
+            "TICKET": "9212550",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:05",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.7",
+            "PROFIT": "-22.36",
+            "COMMENT": "MAM|5001343|9229911",
+            "masterLogin": "5001343",
+            "totalPnL": -23.16
+          },
+          {
+            "TICKET": "9239220",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-19 12:52:52",
+            "COMMISSION": "-0.1",
+            "SWAPS": "0",
+            "PROFIT": "-1.26",
+            "COMMENT": "MAM|5001343|9228130",
+            "masterLogin": "5001343",
+            "totalPnL": -1.36
+          },
+          {
+            "TICKET": "9243172",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-20 15:22:31",
+            "COMMISSION": "-0.1",
+            "SWAPS": "0",
+            "PROFIT": "-0.23",
+            "COMMENT": "MAM|5001343|9239378",
+            "masterLogin": "5001343",
+            "totalPnL": -0.33
+          },
+          {
+            "TICKET": "9244727",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-22 00:10:36",
+            "COMMISSION": "-0.2",
+            "SWAPS": "-0.1",
+            "PROFIT": "-1.57",
+            "COMMENT": "MAM|5001343|9244164",
+            "masterLogin": "5001343",
+            "totalPnL": -1.87
+          },
+          {
+            "TICKET": "9252488",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-23 01:33:49",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.01",
+            "PROFIT": "-0.52",
+            "COMMENT": "MAM|5001343|9251545",
+            "masterLogin": "5001343",
+            "totalPnL": -0.63
+          },
+          {
+            "TICKET": "9257183",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-26 01:25:21",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.01",
+            "PROFIT": "-0.03",
+            "COMMENT": "MAM|5001343|9254962",
+            "masterLogin": "5001343",
+            "totalPnL": -0.14
+          },
+          {
+            "TICKET": "9260469",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-27 05:24:49",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.01",
+            "PROFIT": "0.47",
+            "COMMENT": "MAM|5001343|9258527",
+            "masterLogin": "5001343",
+            "totalPnL": 0.36
+          },
+          {
+            "TICKET": "9261149",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:02:09",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.02",
+            "PROFIT": "-0.62",
+            "COMMENT": "MAM|5001343|9258528",
+            "masterLogin": "5001343",
+            "totalPnL": -0.74
+          },
+          {
+            "TICKET": "9261361",
+            "USER_ID": "11000121",
+            "CLOSE_TIME": "2021-04-29 00:05:19",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.05",
+            "PROFIT": "5.63",
+            "COMMENT": "MAM|5001343|9251548",
+            "masterLogin": "5001343",
+            "totalPnL": 5.48
+          }
+        ]
+      },
+      {
+        "USER_ID": "11000312",
+        "PnL": -136.63,
+        "tradeData": [
+          {
+            "TICKET": "8636631",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 13:27:48",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.99",
+            "PROFIT": "-35.62",
+            "COMMENT": "MAM|5001343|8656862",
+            "masterLogin": "5001343",
+            "totalPnL": -36.71
+          },
+          {
+            "TICKET": "8677024",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-16 00:02:46",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-11.9",
+            "PROFIT": "-6.76",
+            "COMMENT": "MAM|5001343|9170548",
+            "masterLogin": "5001343",
+            "totalPnL": -18.76
+          },
+          {
+            "TICKET": "9168320",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-16 00:02:48",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.49",
+            "PROFIT": "-3.01",
+            "COMMENT": "MAM|5001343|9170543",
+            "masterLogin": "5001343",
+            "totalPnL": -3.6
+          },
+          {
+            "TICKET": "9169737",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 11:42:25",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.63",
+            "PROFIT": "3.35",
+            "COMMENT": "MAM|5001343|9170568",
+            "masterLogin": "5001343",
+            "totalPnL": 2.62
+          },
+          {
+            "TICKET": "9174751",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-05 19:44:00",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.26",
+            "PROFIT": "3.8",
+            "COMMENT": "MAM|5001343|9174747",
+            "masterLogin": "5001343",
+            "totalPnL": 2.44
+          },
+          {
+            "TICKET": "9178709",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-13 03:43:30",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.16",
+            "PROFIT": "0.35",
+            "COMMENT": "MAM|5001343|9178266",
+            "masterLogin": "5001343",
+            "totalPnL": 0.08999999999999997
+          },
+          {
+            "TICKET": "9182400",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 13:37:27",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.47",
+            "PROFIT": "-22.67",
+            "COMMENT": "MAM|5001343|9179024",
+            "masterLogin": "5001343",
+            "totalPnL": -23.240000000000002
+          },
+          {
+            "TICKET": "9190404",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-16 00:02:49",
+            "COMMISSION": "-0.1",
+            "SWAPS": "0.26",
+            "PROFIT": "4.22",
+            "COMMENT": "MAM|5001343|9190400",
+            "masterLogin": "5001343",
+            "totalPnL": 4.38
+          },
+          {
+            "TICKET": "9191356",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-16 00:02:47",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.03",
+            "PROFIT": "-5.22",
+            "COMMENT": "MAM|5001343|9188493",
+            "masterLogin": "5001343",
+            "totalPnL": -5.35
+          },
+          {
+            "TICKET": "9192602",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 15:46:36",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.37",
+            "PROFIT": "-19.51",
+            "COMMENT": "MAM|5001343|9189675",
+            "masterLogin": "5001343",
+            "totalPnL": -19.980000000000004
+          },
+          {
+            "TICKET": "9196215",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 13:42:08",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.3",
+            "PROFIT": "-21.29",
+            "COMMENT": "MAM|5001343|9194179",
+            "masterLogin": "5001343",
+            "totalPnL": -21.69
+          },
+          {
+            "TICKET": "9196590",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-06 13:58:52",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.09",
+            "PROFIT": "-0.23",
+            "COMMENT": "MAM|5001343|9196585",
+            "masterLogin": "5001343",
+            "totalPnL": -0.42000000000000004
+          },
+          {
+            "TICKET": "9212551",
+            "USER_ID": "11000312",
+            "CLOSE_TIME": "2021-04-14 17:41:14",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.22",
+            "PROFIT": "-16.09",
+            "COMMENT": "MAM|5001343|9212051",
+            "masterLogin": "5001343",
+            "totalPnL": -16.41
+          }
+        ]
+      },
+      {
+        "USER_ID": "5001305",
+        "PnL": -153.44,
+        "tradeData": [
+          {
+            "TICKET": "8664982",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-26 17:43:38",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.04",
+            "PROFIT": "-40.05",
+            "COMMENT": "MAM|5001343|9170519",
+            "masterLogin": "5001343",
+            "totalPnL": -41.19
+          },
+          {
+            "TICKET": "8802446",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-26 22:00:04",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.82",
+            "PROFIT": "-27.25",
+            "COMMENT": "MAM|5001343|9170578",
+            "masterLogin": "5001343",
+            "totalPnL": -28.17
+          },
+          {
+            "TICKET": "8803553",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-26 17:55:01",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.82",
+            "PROFIT": "-32.77",
+            "COMMENT": "MAM|5001343|9170588",
+            "masterLogin": "5001343",
+            "totalPnL": -33.690000000000005
+          },
+          {
+            "TICKET": "8973408",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-27 00:04:03",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-1.11",
+            "PROFIT": "-17.16",
+            "COMMENT": "MAM|5001343|9170528",
+            "masterLogin": "5001343",
+            "totalPnL": -18.37
+          },
+          {
+            "TICKET": "9178706",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-13 03:43:29",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.16",
+            "PROFIT": "0.35",
+            "COMMENT": "MAM|5001343|9178266",
+            "masterLogin": "5001343",
+            "totalPnL": 0.08999999999999997
+          },
+          {
+            "TICKET": "9182397",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-26 22:00:00",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.8",
+            "PROFIT": "-30.65",
+            "COMMENT": "MAM|5001343|9228603",
+            "masterLogin": "5001343",
+            "totalPnL": -31.55
+          },
+          {
+            "TICKET": "9196587",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-06 13:58:52",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.09",
+            "PROFIT": "-0.23",
+            "COMMENT": "MAM|5001343|9196585",
+            "masterLogin": "5001343",
+            "totalPnL": -0.42000000000000004
+          },
+          {
+            "TICKET": "9257180",
+            "USER_ID": "5001305",
+            "CLOSE_TIME": "2021-04-26 01:25:21",
+            "COMMISSION": "-0.1",
+            "SWAPS": "-0.01",
+            "PROFIT": "-0.03",
+            "COMMENT": "MAM|5001343|9254962",
+            "masterLogin": "5001343",
+            "totalPnL": -0.14
+          }
+        ]
+      },
+      //Data continues....
+    ]
+  },
+  //Continue to another group 
+]

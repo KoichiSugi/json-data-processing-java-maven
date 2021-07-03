@@ -13,6 +13,7 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "TICKET",
         "GROUP",
+        "CLOSE_TIME",
         "COMMISSION",
         "SWAPS",
         "PROFIT"
@@ -23,6 +24,8 @@ public class GroupTrade {
     private int ticket;
     @JsonProperty("GROUP")
     private int group;
+    @JsonProperty("CLOSE_TIME")
+    private String closeTime;
     @JsonProperty("COMMISSION")
     private float commission;
     @JsonProperty("SWAPS")
@@ -50,13 +53,23 @@ public class GroupTrade {
         this.group = group;
     }
 
+    @JsonProperty("CLOSE_TIME")
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    @JsonProperty("CLOSE_TIME")
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
+
     @JsonProperty("COMMISSION")
     public float getCommission() {
         return commission;
     }
 
     @JsonProperty("COMMISSION")
-    public void setCommission(int commission) {
+    public void setCommission(float commission) {
         this.commission = commission;
     }
 
@@ -66,7 +79,7 @@ public class GroupTrade {
     }
 
     @JsonProperty("SWAPS")
-    public void setSwaps(int swaps) {
+    public void setSwaps(float swaps) {
         this.swaps = swaps;
     }
 
@@ -76,7 +89,7 @@ public class GroupTrade {
     }
 
     @JsonProperty("PROFIT")
-    public void setProfit(int profit) {
+    public void setProfit(float profit) {
         this.profit = profit;
     }
 
@@ -91,6 +104,10 @@ public class GroupTrade {
         sb.append("group");
         sb.append('=');
         sb.append(this.group);
+        sb.append(',');
+        sb.append("closeTime");
+        sb.append('=');
+        sb.append(((this.closeTime == null) ? "<null>" : this.closeTime));
         sb.append(',');
         sb.append("commission");
         sb.append('=');

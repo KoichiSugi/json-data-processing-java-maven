@@ -18,8 +18,8 @@ import java.util.List;
  * @Author Koichi Sugi
  */
 class Main {
-    public static final File ClientsRecords = new File("src/main/resources/ClientsRecords.json");
-    public static final File GroupTrade = new File("src/main/resources/GroupTrade.json");
+    public static final File ClientsRecords = new File("src/main/resources/ClientsRecords_v2.json");
+    public static final File GroupTrade = new File("src/main/resources/GroupTrade_v2.json");
 
     public static void main(String[] args) {
         String ClientsRecordPath = ClientsRecords.getAbsolutePath();
