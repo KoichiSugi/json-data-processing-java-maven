@@ -60,6 +60,7 @@ public class Row {
     public String getcloseTime() {
         return closeTime;
     }
+
     @JsonProperty("CLOSE_TIME")
     public void setcloseTime(String closeTime) {
         this.closeTime = closeTime;
@@ -110,9 +111,17 @@ public class Row {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Row.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("ticket");
+        sb.append('=');
+        sb.append(this.ticket);
+        sb.append(',');
         sb.append("userId");
         sb.append('=');
         sb.append(this.userId);
+        sb.append(',');
+        sb.append("close_time");
+        sb.append('=');
+        sb.append(this.closeTime);
         sb.append(',');
         sb.append("commission");
         sb.append('=');

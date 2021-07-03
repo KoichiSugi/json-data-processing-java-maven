@@ -1,9 +1,6 @@
 package com.app.service;
 
-import com.app.user.Group;
-import com.app.user.GroupTrade;
-import com.app.user.Row;
-import com.app.user.TradeDatum;
+import com.app.user.*;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -123,45 +120,47 @@ public class ServiceImpl implements Service {
                 }
             }
         }
-        //set clientData
-        //1. mid section of comment in rows (groupId of groupTrade)mathces
-        for(int i=0; i< rows.size(); i++){
-
-        }
-
-        //set tradeDatum data by checking a group number of ticket number of groupTrades data
-        //add corresponding data to TradeDatum attributes if the group ID of group and groupTrade
-        List<TradeDatum> tradeDatumList = new ArrayList<>();
-        for (int j = 0; j < group.length; j++) {
-            for (int k = 0; k < groupTrades.size(); k++) {
-                if (Integer.parseInt(group[j].getGroup()) == groupTrades.get(k).getGroup()) {
-                    //set ticket and other data
-                    TradeDatum tradeDatum = new TradeDatum();
-                    tradeDatum.setTicket(String.valueOf(groupTrades.get(k).getTicket()));
-                    //24/6/2021
-                    tradeDatum.setCloseTime(String.valueOf(groupTrades.get(k).getCloseTime()));
-                    tradeDatum.setCommission(String.valueOf(groupTrades.get(k).getCommission()));
-                    tradeDatum.setSwaps(String.valueOf(groupTrades.get(k).getSwaps()));
-                    tradeDatum.setProfit(String.valueOf(groupTrades.get(k).getProfit()));
-                    float totalPnl = groupTrades.get(k).getCommission() + groupTrades.get(k).getSwaps() + groupTrades.get(k).getProfit();
-                    tradeDatum.setTotalPnL(totalPnl);
-                    for (int z = 0; z < rows.size(); z++) {
-                        String ticketNumOfGroup = rows.get(z).getComment();
-                        String groupId = rows.get(z).getComment();
-                        groupId = groupId.substring(groupId.indexOf("|") + 1);
-                        groupId = groupId.substring(0, groupId.indexOf("|"));
-                        ticketNumOfGroup = ticketNumOfGroup.substring(ticketNumOfGroup.lastIndexOf("|") + 1);
-                        if (Integer.parseInt(ticketNumOfGroup) == groupTrades.get(k).getTicket()) {
-                            tradeDatum.setComment(rows.get(z).getComment());
-                            tradeDatum.setMasterLogin(groupId);
-                        }
-
-                    }
-                    tradeDatumList.add(tradeDatum);
-                    //System.out.println(tradeDatum);
-                    //group[j].setClientData(tradeDatumList);
+        //Set clientData
+        //1. Check if the mid value of the comment field in the rows matches with groupId of group Object.
+        //2, if there is a match, sum up the total PnL of all the tickets with the same USER_ID
+        List<Row> test = null;
+        int sizy = 0;
+        for (int i = 0; i < group.length; i++) {
+            //Create a list of tickets data with the same groupId in the comment filed from Rows
+            List<ClientData> clientDataList = new ArrayList<>();
+            test = getObjectFromRows(rows, Integer.parseInt(group[i].getGroup()));
+            for (int j = 0; j < test.size(); j++) {
+                List<TradeDatum> tradeDatumList = new ArrayList<>();
+                ClientData clientData = new ClientData();
+                clientData.setUserId(String.valueOf(test.get(j).getUserId()));
+                //if an obeject for ID is created for the first time
+                if (clientData.getPNl() == null) {
+                    clientData.setPNl(test.get(j).getCommission() + test.get(j).getSwaps() + test.get(j).getProfit());
                 }
+                clientData.setPNl(clientData.getPNl() + test.get(j).getCommission() + test.get(j).getSwaps() + test.get(j).getProfit());
+                //Set tradeData
+                //Get how many tickets and loop
+                List<Row> ticketsList = getTicketsWithSameIdFromRows(rows, Integer.parseInt(clientData.getUserId()));
+                for (int k = 0; k < ticketsList.size(); k++) {
+                    TradeDatum tradeDatum = new TradeDatum();
+                    tradeDatum.setTicket(String.valueOf(ticketsList.get(k).getTicket()));
+                    tradeDatum.setUserId(ticketsList.get(k).getUserId());
+                    tradeDatum.setCloseTime(ticketsList.get(k).getcloseTime());
+                    tradeDatum.setCommission(String.valueOf(ticketsList.get(k).getCommission()));
+                    tradeDatum.setSwaps(String.valueOf(ticketsList.get(k).getSwaps()));
+                    tradeDatum.setProfit(String.valueOf(ticketsList.get(k).getProfit()));
+                    tradeDatum.setComment(String.valueOf(ticketsList.get(k).getComment()));
+                    String groupId = ticketsList.get(k).getComment();
+                    groupId = groupId.substring(groupId.indexOf("|") + 1);
+                    groupId = groupId.substring(0, groupId.indexOf("|"));
+                    tradeDatum.setMasterLogin(groupId);
+                    tradeDatum.setTotalPnL(ticketsList.get(k).getProfit() + ticketsList.get(k).getSwaps() + ticketsList.get(k).getCommission());
+                    tradeDatumList.add(tradeDatum);
+                }
+                clientData.setTradeData(tradeDatumList);
+                clientDataList.add(clientData);
             }
+            group[i].setClientData(clientDataList);
         }
 
         try {
@@ -180,13 +179,13 @@ public class ServiceImpl implements Service {
 
     }
 
-    //Stream implementation (implement later)
-    public List<GroupTrade> getObjectFromGroupTrade(List<GroupTrade> groupTrades, String searchterm) {
-        return groupTrades.stream().filter(p -> p.getGroup() == (Integer.parseInt(searchterm))).collect(Collectors.toList());
-    }
-
-    //Stream implementation (implement later)
+    // Get a list of objects from Row by searching a mid section of "Comment" field with UserId
     public List<Row> getObjectFromRows(List<Row> rows, int searchterm) {
         return rows.stream().filter(p -> p.getComment().contains(String.valueOf(searchterm))).collect(Collectors.toList());
+    }
+
+    // Get a list of objects from Row by searching "UserID" field with UserId
+    public List<Row> getTicketsWithSameIdFromRows(List<Row> rows, int searchterm) {
+        return rows.stream().filter(p -> p.getUserId() == (searchterm)).collect(Collectors.toList());
     }
 }

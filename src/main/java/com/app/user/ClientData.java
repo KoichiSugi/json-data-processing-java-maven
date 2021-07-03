@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 import java.util.List;
+
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -17,7 +18,7 @@ public class ClientData {
     @JsonProperty("USER_ID")
     private String userId;
     @JsonProperty("PnL")
-    private String pNl;
+    private Float pNl;
     @JsonProperty("tradeData")
     private List<TradeDatum> tradeData;
 }
