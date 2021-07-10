@@ -1,8 +1,6 @@
 package com.app.service;
 
 import com.app.user.*;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -11,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -18,18 +17,20 @@ import java.util.stream.Collectors;
  * Modified 10/06/2021
  */
 public class ServiceImpl implements Service {
-    @Override
-    public HashMap<Integer, Float> getIndividualPnL(List<Row> rows) {
+    private final File profitLossSummary = new File("target/Profit_loss_summary.json");
 
-        HashMap<Integer, Float> individualPnL = new HashMap<Integer, Float>();
+    @Override
+    public Map<Integer, Float> getIndividualPnL(List<Row> rows) {
+
+        HashMap<Integer, Float> individualPnL = new HashMap<>();
         //sum up all individual PnL
-        for (int i = 0; i < rows.size(); i++) {
-            if (!individualPnL.containsKey(rows.get(i).getUserId())) {
+        for (Row row : rows) {
+            if (!individualPnL.containsKey(row.getUserId())) {
                 //if a key does not exist, newly create a pair
-                individualPnL.put(rows.get(i).getUserId(), rows.get(i).getProfit() + rows.get(i).getSwaps() + rows.get(i).getCommission());
+                individualPnL.put(row.getUserId(), row.getProfit() + row.getSwaps() + row.getCommission());
             } else {
                 //if a key exists, sum up
-                individualPnL.put(rows.get(i).getUserId(), individualPnL.get(rows.get(i).getUserId()) + rows.get(i).getProfit() + rows.get(i).getSwaps() + rows.get(i).getCommission());
+                individualPnL.put(row.getUserId(), individualPnL.get(row.getUserId()) + row.getProfit() + row.getSwaps() + row.getCommission());
             }
         }
         System.out.println("------------Individual Profit and Loss------------");
@@ -40,16 +41,16 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public HashMap<Integer, Float> getGroupPnL(List<GroupTrade> groupTrades) {
-        HashMap<Integer, Float> groupPnL = new HashMap<Integer, Float>();
+    public Map<Integer, Float> getGroupPnL(List<GroupTrade> groupTrades) {
+        HashMap<Integer, Float> groupPnL = new HashMap<>();
 
-        for (int i = 0; i < groupTrades.size(); i++) {
-            if (!groupPnL.containsKey(groupTrades.get(i).getGroup())) {
+        for (GroupTrade groupTrade : groupTrades) {
+            if (!groupPnL.containsKey(groupTrade.getGroup())) {
                 //if a key does not exist, newly create a pair
-                groupPnL.put(groupTrades.get(i).getGroup(), groupTrades.get(i).getProfit() + groupTrades.get(i).getSwaps() + groupTrades.get(i).getCommission());
+                groupPnL.put(groupTrade.getGroup(), groupTrade.getProfit() + groupTrade.getSwaps() + groupTrade.getCommission());
             } else {
                 //if a key exists, sum up
-                groupPnL.put(groupTrades.get(i).getGroup(), groupPnL.get(groupTrades.get(i).getGroup()) + groupTrades.get(i).getProfit() + groupTrades.get(i).getSwaps() + groupTrades.get(i).getCommission());
+                groupPnL.put(groupTrade.getGroup(), groupPnL.get(groupTrade.getGroup()) + groupTrade.getProfit() + groupTrade.getSwaps() + groupTrade.getCommission());
             }
         }
         System.out.println("------------Group Profit and Loss------------");
@@ -61,23 +62,23 @@ public class ServiceImpl implements Service {
 
     //#2 clientTotalPnL
     @Override
-    public HashMap<Integer, Float> getClientTotalPnL(List<GroupTrade> groupTrades, List<Row> rows) {
+    public Map<Integer, Float> getClientTotalPnL(List<GroupTrade> groupTrades, List<Row> rows) {
         //1. create a Hashmap groupID in a comment and userID
-        HashMap<Integer, Integer> GroupNumber_userIdMap = new HashMap<Integer, Integer>();
-        HashMap<Integer, Float> clientTotalPnl = new HashMap<Integer, Float>();
-        for (int i = 0; i < rows.size(); i++) {
-            String groupId = rows.get(i).getComment();
+        HashMap<Integer, Integer> GroupNumber_userIdMap = new HashMap<>();
+        HashMap<Integer, Float> clientTotalPnl = new HashMap<>();
+        for (Row row : rows) {
+            String groupId = row.getComment();
             groupId = groupId.substring(groupId.indexOf("|") + 1);
             groupId = groupId.substring(0, groupId.indexOf("|"));
             if (!GroupNumber_userIdMap.containsKey(Integer.parseInt(groupId))) {
                 //if there is no such group id in GroupNumber_userIdMap, create a pair
-                GroupNumber_userIdMap.put(Integer.parseInt(groupId), rows.get(i).getUserId());
+                GroupNumber_userIdMap.put(Integer.parseInt(groupId), row.getUserId());
                 //here, update groupTotalPnl with groupid as key and the total sum of individual profits
-                clientTotalPnl.put(Integer.parseInt(groupId), rows.get(i).getProfit() + rows.get(i).getSwaps() + rows.get(i).getCommission());
+                clientTotalPnl.put(Integer.parseInt(groupId), row.getProfit() + row.getSwaps() + row.getCommission());
             } else if (clientTotalPnl.containsKey(Integer.parseInt(groupId))) {
                 //if there is such group id in GroupNumber_userIdMap
                 //update groupTotalPnl
-                clientTotalPnl.put(Integer.parseInt(groupId), clientTotalPnl.get(Integer.parseInt(groupId)) + rows.get(i).getProfit() + rows.get(i).getSwaps() + rows.get(i).getCommission());
+                clientTotalPnl.put(Integer.parseInt(groupId), clientTotalPnl.get(Integer.parseInt(groupId)) + row.getProfit() + row.getSwaps() + row.getCommission());
             }
         }
         System.out.println("------------Client Total Profit and Loss------------");
@@ -88,7 +89,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void serializeJson(HashMap<Integer, Float> groupPnL, HashMap<Integer, Float> clientTotalPnl, List<GroupTrade> groupTrades, List<Row> rows) {
+    public void serializeJson(Map<Integer, Float> groupPnL, Map<Integer, Float> clientTotalPnl, List<GroupTrade> groupTrades, List<Row> rows) {
         Group[] group = new Group[groupPnL.size()];
         int count = 0;
         //create objects of Group for each groupID
@@ -102,9 +103,9 @@ public class ServiceImpl implements Service {
 
         //set groupPnl
         for (Integer i : groupPnL.keySet()) {
-            for (int j = 0; j < group.length; j++) {
-                if (i == Integer.parseInt(group[j].getGroup())) {
-                    group[j].setGroupPnL(groupPnL.get(i).toString());
+            for (Group value : group) {
+                if (i == Integer.parseInt(value.getGroup())) {
+                    value.setGroupPnL(groupPnL.get(i).toString());
                 }
             }
         }
@@ -113,79 +114,74 @@ public class ServiceImpl implements Service {
         //1. Check individual's group ID
         //2. If individual's group ID matches, sum up
         for (Integer i : clientTotalPnl.keySet()) {
-            for (int j = 0; j < group.length; j++) {
+            for (Group value : group) {
                 // if a group ID matches group ID of an object being looped, add
-                if (i == Integer.parseInt(group[j].getGroup())) {
-                    group[j].setClientTotalPnL(clientTotalPnl.get(i).toString());
+                if (i == Integer.parseInt(value.getGroup())) {
+                    value.setClientTotalPnL(clientTotalPnl.get(i).toString());
                 }
             }
         }
         //Set clientData
         //1. Check if the mid value of the comment field in the rows matches with groupId of group Object.
         //2, if there is a match, sum up the total PnL of all the tickets with the same USER_ID
-        List<Row> test = null;
-        int sizy = 0;
-        for (int i = 0; i < group.length; i++) {
+        List<Row> test;
+        for (Group value : group) {
             //Create a list of tickets data with the same groupId in the comment filed from Rows
             List<ClientData> clientDataList = new ArrayList<>();
-            test = getObjectFromRows(rows, Integer.parseInt(group[i].getGroup()));
-            for (int j = 0; j < test.size(); j++) {
+            test = getObjectFromRows(rows, Integer.parseInt(value.getGroup()));
+            for (Row row : test) {
                 List<TradeDatum> tradeDatumList = new ArrayList<>();
                 ClientData clientData = new ClientData();
-                clientData.setUserId(String.valueOf(test.get(j).getUserId()));
-                //if an obeject for ID is created for the first time
+                clientData.setUserId(String.valueOf(row.getUserId()));
+                //if an object for ID is created for the first time
                 if (clientData.getPNl() == null) {
-                    clientData.setPNl(test.get(j).getCommission() + test.get(j).getSwaps() + test.get(j).getProfit());
+                    clientData.setPNl(row.getCommission() + row.getSwaps() + row.getProfit());
                 }
-                clientData.setPNl(clientData.getPNl() + test.get(j).getCommission() + test.get(j).getSwaps() + test.get(j).getProfit());
+                clientData.setPNl(clientData.getPNl() + row.getCommission() + row.getSwaps() + row.getProfit());
                 //Set tradeData
                 //Get how many tickets and loop
                 List<Row> ticketsList = getTicketsWithSameIdFromRows(rows, Integer.parseInt(clientData.getUserId()));
-                for (int k = 0; k < ticketsList.size(); k++) {
+                for (Row item : ticketsList) {
                     TradeDatum tradeDatum = new TradeDatum();
-                    tradeDatum.setTicket(String.valueOf(ticketsList.get(k).getTicket()));
-                    tradeDatum.setUserId(ticketsList.get(k).getUserId());
-                    tradeDatum.setCloseTime(ticketsList.get(k).getcloseTime());
-                    tradeDatum.setCommission(String.valueOf(ticketsList.get(k).getCommission()));
-                    tradeDatum.setSwaps(String.valueOf(ticketsList.get(k).getSwaps()));
-                    tradeDatum.setProfit(String.valueOf(ticketsList.get(k).getProfit()));
-                    tradeDatum.setComment(String.valueOf(ticketsList.get(k).getComment()));
-                    String groupId = ticketsList.get(k).getComment();
+                    tradeDatum.setTicket(String.valueOf(item.getTicket()));
+                    tradeDatum.setUserId(item.getUserId());
+                    tradeDatum.setCloseTime(item.getcloseTime());
+                    tradeDatum.setCommission(String.valueOf(item.getCommission()));
+                    tradeDatum.setSwaps(String.valueOf(item.getSwaps()));
+                    tradeDatum.setProfit(String.valueOf(item.getProfit()));
+                    tradeDatum.setComment(String.valueOf(item.getComment()));
+                    String groupId = item.getComment();
                     groupId = groupId.substring(groupId.indexOf("|") + 1);
                     groupId = groupId.substring(0, groupId.indexOf("|"));
                     tradeDatum.setMasterLogin(groupId);
-                    tradeDatum.setTotalPnL(ticketsList.get(k).getProfit() + ticketsList.get(k).getSwaps() + ticketsList.get(k).getCommission());
+                    tradeDatum.setTotalPnL(item.getProfit() + item.getSwaps() + item.getCommission());
                     tradeDatumList.add(tradeDatum);
                 }
                 clientData.setTradeData(tradeDatumList);
                 clientDataList.add(clientData);
             }
-            group[i].setClientData(clientDataList);
+            value.setClientData(clientDataList);
         }
 
         try {
             ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT
             );
-            mapper.writeValue(new File("src/main/Profit_loss_summary.json"), group);
-            System.out.println("");
-            System.out.println("--JSON file has been generated in the resources folder--");
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
+            mapper.writeValue(profitLossSummary, group);
+            System.out.println();
+            System.out.println("--JSON file has been generated in path below--");
+            System.out.println(profitLossSummary.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     // Get a list of objects from Row by searching a mid section of "Comment" field with UserId
-    public List<Row> getObjectFromRows(List<Row> rows, int searchterm) {
-        return rows.stream().filter(p -> p.getComment().contains(String.valueOf(searchterm))).collect(Collectors.toList());
+    public List<Row> getObjectFromRows(List<Row> rows, int searchTerm) {
+        return rows.stream().filter(p -> p.getComment().contains(String.valueOf(searchTerm))).collect(Collectors.toList());
     }
 
     // Get a list of objects from Row by searching "UserID" field with UserId
-    public List<Row> getTicketsWithSameIdFromRows(List<Row> rows, int searchterm) {
-        return rows.stream().filter(p -> p.getUserId() == (searchterm)).collect(Collectors.toList());
+    public List<Row> getTicketsWithSameIdFromRows(List<Row> rows, int searchTerm) {
+        return rows.stream().filter(p -> p.getUserId() == (searchTerm)).collect(Collectors.toList());
     }
 }
