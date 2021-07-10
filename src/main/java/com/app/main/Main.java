@@ -6,6 +6,7 @@ import com.app.user.GroupTrade;
 import com.app.user.Row;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +27,8 @@ public class Main {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     }
 
-    public static void main(String[] args) throws IOException {
+    @SneakyThrows(IOException.class)
+    public static void main(String[] args) {
         List<Row> rows = Arrays.asList(mapper.treeToValue(mapper.readTree(clientRecords).get("rows"), Row[].class));
         List<GroupTrade> groupTrades = Arrays.asList(mapper.treeToValue(mapper.readTree(groupTrade).get("rows"), GroupTrade[].class));
 
