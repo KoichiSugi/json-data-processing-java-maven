@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -126,18 +123,18 @@ public class ServiceImpl implements Service {
         //2, if there is a match, sum up the total PnL of all the tickets with the same USER_ID
         List<Row> test;
         for (Group value : group) {
-            //Create a list of tickets data with the same groupId in the comment filed from Rows
             List<ClientData> clientDataList = new ArrayList<>();
             test = getObjectFromRows(rows, Integer.parseInt(value.getGroup()));
-            for (Row row : test) {
+
+            test.stream().forEach(e -> {
                 List<TradeDatum> tradeDatumList = new ArrayList<>();
                 ClientData clientData = new ClientData();
-                clientData.setUserId(String.valueOf(row.getUserId()));
+                clientData.setUserId(String.valueOf(e.getUserId()));
                 //if an object for ID is created for the first time
                 if (clientData.getPNl() == null) {
-                    clientData.setPNl(row.getCommission() + row.getSwaps() + row.getProfit());
+                    clientData.setPNl(e.getCommission() + e.getSwaps() + e.getProfit());
                 }
-                clientData.setPNl(clientData.getPNl() + row.getCommission() + row.getSwaps() + row.getProfit());
+                clientData.setPNl(clientData.getPNl() + e.getCommission() + e.getSwaps() + e.getProfit());
                 //Set tradeData
                 //Get how many tickets and loop
                 List<Row> ticketsList = getTicketsWithSameIdFromRows(rows, Integer.parseInt(clientData.getUserId()));
@@ -159,15 +156,15 @@ public class ServiceImpl implements Service {
                 }
                 clientData.setTradeData(tradeDatumList);
                 clientDataList.add(clientData);
-            }
+
+            });
             value.setClientData(clientDataList);
         }
-
+        System.out.println(Arrays.stream(group).count());
         try {
             ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT
             );
             mapper.writeValue(profitLossSummary, group);
-            System.out.println();
             System.out.println("--JSON file has been generated in path below--");
             System.out.println(profitLossSummary.getAbsolutePath());
         } catch (IOException e) {
