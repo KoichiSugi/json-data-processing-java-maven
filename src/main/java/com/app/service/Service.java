@@ -1,5 +1,6 @@
 package com.app.service;
 
+import com.app.user.Group;
 import com.app.user.GroupTrade;
 import com.app.user.Row;
 
@@ -16,5 +17,7 @@ public interface Service {
 
     Map<Integer, Float> getClientTotalPnL(List<GroupTrade> groupTrades, List<Row> rows);
 
-    void serializeJson(Map<Integer, Float> groupPnL, Map<Integer, Float> clientTotalPnl, List<GroupTrade> groupTrades, List<Row> rows);
+    Group[] createGroupObject (Map<Integer, Float> groupPnL, Map<Integer, Float> clientTotalPnl);
+
+    void serializeJson(List<Row> rows, Group[] group);
 }
