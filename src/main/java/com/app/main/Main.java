@@ -2,6 +2,7 @@ package com.app.main;
 
 import com.app.service.Service;
 import com.app.service.ServiceImpl;
+import com.app.user.Group;
 import com.app.user.GroupTrade;
 import com.app.user.Row;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -37,7 +38,8 @@ public class Main {
         Map<Integer, Float> groupPnL = idp.getGroupPnL(groupTrades);
         Map<Integer, Float> clientTotalPnL = idp.getClientTotalPnL(groupTrades, rows);
 
+        Group[] group = idp.createGroupObject(groupPnL, clientTotalPnL);
         // Serialize JSON.
-        idp.serializeJson(groupPnL, clientTotalPnL, groupTrades, rows);
+        idp.serializeJson(rows , group);
     }
 }
